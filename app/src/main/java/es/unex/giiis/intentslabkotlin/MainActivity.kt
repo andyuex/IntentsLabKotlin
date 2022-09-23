@@ -1,6 +1,7 @@
 package es.unex.giiis.intentslabkotlin
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         val eDName = findViewById<EditText>(R.id.editTextTextPersonName)
         mtVRespuesta = findViewById<TextView>(R.id.tVRespuesta)
         val bPreguntar = findViewById<Button>(R.id.bPreguntar)
+        val bNavegar = findViewById<Button>(R.id.button3)
 
         bSaludar.setOnClickListener {
             val intent = Intent(this@MainActivity, SaludoActivity::class.java)
@@ -30,6 +32,13 @@ class MainActivity : AppCompatActivity() {
         bPreguntar.setOnClickListener {
             val intent = Intent(this@MainActivity, PreguntaActivity::class.java)
             startActivityForResult(intent, REQUEST_CODE)
+        }
+
+        bNavegar.setOnClickListener {
+            val webPage = Uri.parse("https://www.android.com")
+            val webIntent = Intent(Intent.ACTION_VIEW, webPage)
+            val chooser = Intent.createChooser(webIntent, "Title")
+            startActivity(chooser)
         }
     }
 
